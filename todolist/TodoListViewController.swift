@@ -26,9 +26,11 @@ class TodoListViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
     }
-    @IBAction func addBtnClick(_ sender: Any) {
-        NSLog("add button click")
+    @IBAction func editButtonClick(_ sender: Any) {
         self.tableView.setEditing(!self.tableView.isEditing, animated: true)
+    }
+    @IBAction func addButtonClick(_ sender: Any) {
+        NSLog("insert click")
     }
 }
 

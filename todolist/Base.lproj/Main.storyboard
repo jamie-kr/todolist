@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -30,7 +31,7 @@
                                         <rect key="frame" x="0.0" y="1" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DtG-v9-vwg" id="Uq3-fv-DN9">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HHQ-Tk-P9d">
@@ -60,6 +61,7 @@
                                         <connections>
                                             <outlet property="todoDueTo" destination="6e8-1q-ci3" id="WAZ-Xe-116"/>
                                             <outlet property="todoText" destination="HHQ-Tk-P9d" id="BYl-tt-Ybo"/>
+                                            <segue destination="RUM-So-1kH" kind="show" identifier="ShowDetail" id="lJJ-jd-Vao"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -78,12 +80,20 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="TODO 리스트" id="nKQ-69-dx5">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="L2y-Z4-hZ9">
-                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <connections>
-                                <action selector="addBtnClick:" destination="BYZ-38-t0r" id="yyj-zZ-Wgu"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="Gez-xs-hng">
+                                <connections>
+                                    <action selector="addButtonClick:" destination="BYZ-38-t0r" id="w5e-3y-O6Z"/>
+                                    <segue destination="w3P-qX-MT3" kind="presentation" id="8Kd-Z7-ja3"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="edit" id="L2y-Z4-hZ9">
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <connections>
+                                    <action selector="editButtonClick:" destination="BYZ-38-t0r" id="kFg-dH-6fw"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -92,7 +102,48 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1076" y="138.98050974512745"/>
+            <point key="canvasLocation" x="854" y="56"/>
+        </scene>
+        <!--new-->
+        <scene sceneID="vHh-2u-RQ2">
+            <objects>
+                <viewController id="RUM-So-1kH" customClass="ViewController" customModule="todolist" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="omS-91-fFU"/>
+                        <viewControllerLayoutGuide type="bottom" id="Pyb-Lg-J57"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Q1I-P9-P9U">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q0D-93-hzo">
+                                <rect key="frame" x="172" y="323" width="30" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="q0D-93-hzo" firstAttribute="centerY" secondItem="Q1I-P9-P9U" secondAttribute="centerY" id="B7n-4a-YZO"/>
+                            <constraint firstItem="q0D-93-hzo" firstAttribute="centerX" secondItem="Q1I-P9-P9U" secondAttribute="centerX" id="E2t-Cq-gCf"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="new" id="orP-RV-nEK">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Ynj-n9-uxM">
+                            <connections>
+                                <action selector="cancelBtn:" destination="RUM-So-1kH" id="6Fr-Rv-BOy"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="TFl-2y-Og0"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="saveButton" destination="TFl-2y-Og0" id="09l-2R-1hP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xXd-bM-72H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3070" y="72"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QBV-19-SNm">
@@ -111,7 +162,28 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1j8-P2-qjC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="162" y="139"/>
+            <point key="canvasLocation" x="52" y="57"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qcd-uZ-BQg">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="w3P-qX-MT3" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="H1X-a6-LIm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="RUM-So-1kH" kind="relationship" relationship="rootViewController" id="KXN-xJ-ck3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aKf-uP-z4e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1839" y="593"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="lJJ-jd-Vao"/>
+    </inferredMetricsTieBreakers>
 </document>
